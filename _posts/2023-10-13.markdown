@@ -1,6 +1,16 @@
 ---
 layout: post
-title: "orm? "
-date: 2023-10-13 14:32:16 +0900
-categories: BACKEND
+title: "첫 포스트"
+date: 2024-04-16 14:32:16 +0900
+categories: ANY
 ---
+
+원래는 네이버 블로그를 사용했었지만
+깃허브에서 하는게 좀더 좋을거 같아서
+옴기게 되었다
+
+마크다운 언어라 기존걸 다 옮기긴 힘들겠지만~
+
+차근차근 다시 써보자~
+
+https://blog.naver.com/terry0222
