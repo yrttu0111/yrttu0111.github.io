@@ -1,0 +1,6 @@
+---
+layout: post
+title: "orm? "
+date: 2023-10-13 14:32:16 +0900
+categories: BACKEND
+---
