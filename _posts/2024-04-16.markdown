@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "첫 포스트"
-date: 2024-04-16 14:32:16 +0900
-categories: "ANY"
+title: 첫 포스트
+subtitle: 네이버 블로그에서 깃헙블로그로
+categories: LIFE
+tags: [test]
 ---
 
 원래는 네이버 블로그를 사용했었지만
