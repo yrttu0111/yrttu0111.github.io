@@ -4,8 +4,10 @@ title: AWS EC2 심화
 subtitle: AWS ASS 준비 EC2 심화
 categories: AWS
 tags: [AWS, ASS, EC2]
-date: 2023-04-16
+date: 2023-04-19
 ---
+
+# ec2 SAA 레벨
 
 ## private vs public ip
 
