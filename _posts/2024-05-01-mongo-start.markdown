@@ -73,4 +73,13 @@ const [blog, user] = await Promise.all([
 ```
 해주면 프로미스 올 안에서 비동기 적으로 처리되어 성능을 개선할 수 있다.
 
-## 읽기 성능 개선
+
+## nesting된 것 수정할 때
+```
+Comment.findOneAndUpdate({_id: commentId}, {content}, {new: true})
+Blog.updateOne(
+    {"comment._id": commentID},
+    {"comments.$.content": content}
+)
+```
+코멘트id에 해당 id 의 컨텐츠를 수정할 수 있다
