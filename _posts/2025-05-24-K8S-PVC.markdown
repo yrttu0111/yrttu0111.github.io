@@ -1,0 +1,66 @@
+---
+layout: post
+title: 쿠버네티스 pod 이 꺼져도 log폴더는 남겨두고 싶어!
+subtitle: K8S Volume PVC
+categories: Kubernetes
+tags: [K8s, PVC]
+date: 2025-05-24
+---
+
+
+pod이 종료되면 팟 안에 있던 폴더들은 사라지게 된다.
+
+팟이 여러개 떠있는데 하나에 폴더에 다 저장하고 싶을때
+
+팟이 종료 되어도 계속 보존 되었으면 할때
+
+PVC를 사용하면 된다.
+
+# PV? PVC?
+PV(persistent voulume)는 실제 저장 되는 물리적인 공간이다.
+
+이곳에 저장 하고 PVC(persistent voulume claims)로 팟에 mount하는 것?
+서로 연결해주는 연결? 맵핑? 해주는 역할을 한다
+
+한개의 PV는 여러개의 PVC 와 연결 가능 (pod과 연결 가능하단 소리)
+
+그러므로 여러개의 pod에 하나의 pv에 공동으로 저장할 수 있어 공동으로 사용할 수 있는 저장소가 된다.
+
+나의 경우는 ncp 관리형 k8s 사용중이고
+ncp cloud storage 볼륨에 pvc 만 생성해서 연결했다
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: game-server-log-pvc
+    namespace: game
+spec:
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 10Gi
+
+```
+
+이런식으로 만들어서 
+
+```
+containers:
+{...}
+                  volumeMounts:
+                      - name: log-volume
+                        mountPath: /app/log
+                        readOnly: false
+{...}
+volumes:
+                
+                - name: log-volume
+                  persistentVolumeClaim:
+                      claimName: game-server-log-pvc
+```
+
+deployment yaml에 이런식으로 마운트해서 사용했다.
+로그를 저장하는게 목적이며서 readOnly 옵션을 false 로 두었다.
+
